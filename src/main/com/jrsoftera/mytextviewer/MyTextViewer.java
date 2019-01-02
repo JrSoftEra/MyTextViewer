@@ -76,7 +76,9 @@ public class MyTextViewer extends TabActivity implements TabHost.TabContentFacto
 	private String tag;
 
 	private int tabCount;
-
+    
+    private boolean isRemove = false;
+    
 	private Uri uri;
 	
     @Override
@@ -127,6 +129,7 @@ public class MyTextViewer extends TabActivity implements TabHost.TabContentFacto
 		MenuItem newTab = menu.add(0,NEWQUERY, 0, "Query");
 		newTab.setIcon(android.R.drawable.ic_menu_search);
 		MenuItem remove = menu.add(0,REMOVE, 0, "Remove");
+        remove.setVisible(isRemove);
 		remove.setIcon(android.R.drawable.ic_menu_delete);
         return true;
     }
@@ -234,6 +237,7 @@ public class MyTextViewer extends TabActivity implements TabHost.TabContentFacto
     private Intent createShareIntent() {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
+        //Not a uri from file..
         //Uri uri = Uri.fromFile(getFileStreamPath("shared.png"));
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
         return shareIntent;
