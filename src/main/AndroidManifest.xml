@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jrsoftera.mytextviewer"
+	android:versionCode="1"
+	android:versionName="1.00.00b" >
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Material.Light.DarkActionBar">
+        <activity
+            android:name=".MyTextViewer"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+				<!--<action android:name="com.jrsoftera.mytextviewer.ACTION_RETURN_FILE"/>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+		<activity
+			android:name=".FileSelector"
+			android:label="@string/app_name"
+			android:theme="@android:style/Theme.Material" >
+		<!--<intent-filter>
+			<action android:name="android.intent.action.PICK" />
+			<category android:name="android.intent.category.OPENABLE" />
+		</intent-filter>-->
+		</activity>
+		<provider 
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.jrsoftera.mytextviewer.MyTextViewer.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false" >
+            <meta-data 
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+		</provider>
+    </application>
+
+</manifest>
